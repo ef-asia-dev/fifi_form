@@ -1,0 +1,19 @@
+@function color($array, $color-group, $index) {
+	@return nth( map-get($array, $color-group), $index );
+}
+
+@mixin mq($device) {
+	$string: "max-width: 3000px"; //mobile
+	//$string: "max-width: 500px"; //mobile
+	@if ($device == t) {
+		//$string: "min-width: 501px) and (max-width: 1200px";
+		$string: "min-width: 4000px";
+	} @else if ($device == d) {
+		//$string: "min-width: 1201px";
+		$string: "min-width: 4000px";
+	}
+
+	@media screen and (unquote($string)) {
+		@content;
+	}
+}
