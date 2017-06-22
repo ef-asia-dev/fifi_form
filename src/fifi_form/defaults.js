@@ -272,6 +272,7 @@ fifi_form = function(settings) {
 
   _.curStep = 1;
   _.cusId = '';
+  _.clickedBtn = false;
 
   _.init();
 };
