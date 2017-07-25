@@ -229,7 +229,7 @@ fifi_form = function(settings) {
       birthdate: {
         min: '1911-01-01',
         max: '2011-12-31',
-        default: '1993-01-01',
+        default: '',
         required: true,
         regex: /^[\d\s\+\-]{4}-[\d\s\+\-]{2}-[\d\s\+\-]{2}$/
       },

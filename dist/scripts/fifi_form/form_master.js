@@ -218,7 +218,7 @@ fifi_form = function fifi_form(settings) {
       birthdate: {
         min: '1911-01-01',
         max: '2011-12-31',
-        default: '1993-01-01',
+        default: '',
         required: true,
         regex: /^[\d\s\+\-]{4}-[\d\s\+\-]{2}-[\d\s\+\-]{2}$/
       },
@@ -585,15 +585,15 @@ fifi_form.prototype.clickedSubmit = function () {
 
       var createUrl = function createUrl() {
         var url = _.def.submitToLive ? 'https://services.ef.com/secureformsapi/campaign/' : 'https://stg-efcom-lb.eflangtech.com/secureformsapi/campaign/';
-        if (window.location.href.indexOf('qa') > -1 || window.location.href.indexOf('sitecore') > -1 || window.location.href.indexOf('localhost') > -1) {
+        /*if (window.location.href.indexOf('qa') > -1 || window.location.href.indexOf('sitecore') > -1 || window.location.href.indexOf('localhost') > -1) {
           url = 'https://stg-efcom-lb.eflangtech.com/secureformsapi/';
-        } else {
-          url = 'https://services.ef.com/secureformsapi/';
-        }
+        } else {*/
+        url = 'https://services.ef.com/secureformsapi/';
+        //}
         if (_.curStep === 2) {
           url += 'ConfirmAddressCampaign/';
         } else {
-          url += 'campaign/';
+          url += 'Campaign/';
         }
         url += _.cusId;
         return url;
@@ -1098,12 +1098,14 @@ fifi_form.prototype.runValidation = function (validCB, invalidCB) {
   // form logic
   var formLogicQs = document.querySelectorAll(_.def.wrapper + ' .form-logic-Q');
   for (var i = 0; i < formLogicQs.length; i++) {
-    if (!hasClass(formLogicQs[i], 'form-WantsInfo')) {
-      if (!formLogicQs[i].querySelectorAll('input')[0].checked) {
-        onInvalid(formLogicQs[i]);
-      } else {
-        if (hasClass(formLogicQs[i], 'input-invalid')) {
-          onValid(formLogicQs[i]);
+    if (!hasClass(formLogicQs[i], 'form-hidden')) {
+      if (hasClass(formLogicQs[i], 'form-AcceptTnC')) {
+        if (!formLogicQs[i].querySelectorAll('input')[0].checked) {
+          onInvalid(formLogicQs[i]);
+        } else {
+          if (hasClass(formLogicQs[i], 'input-invalid')) {
+            onValid(formLogicQs[i]);
+          }
         }
       }
     }

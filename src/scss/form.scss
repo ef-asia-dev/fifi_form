@@ -22,6 +22,7 @@
   select {
     box-sizing: border-box;
     width: 100%;
+    min-height: 25px;
     padding: 4px;
     border: 1px solid black;
   }
@@ -107,4 +108,33 @@ textarea {
   overflow-y: scroll;
   border: 1px solid black;
   padding: 10px;
+}
+.brochure-box {
+  background-color: #f7f7f7;
+  padding: 15px;
+  margin-bottom: 20px;
+  ul {
+    list-style: none;
+    -webkit-padding-start: 0;
+  }
+}
+.brochure-img-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20%;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+.brochure-caption {
+  display: inline-block;
+  vertical-align: middle;
+  width: 70%;
+  padding-left: 10px;
+  h3 {
+    font-weight: 700;
+    text-align: left;
+  }
 }

@@ -164,12 +164,14 @@ fifi_form.prototype.runValidation = function(validCB, invalidCB) {
   // form logic
   let formLogicQs = document.querySelectorAll(_.def.wrapper+' .form-logic-Q');
   for (let i = 0; i < formLogicQs.length; i++) {
-    if (! hasClass(formLogicQs[i], 'form-WantsInfo')) {
-      if (! formLogicQs[i].querySelectorAll('input')[0].checked) {
-        onInvalid(formLogicQs[i]);
-      } else {
-        if (hasClass(formLogicQs[i], 'input-invalid')) {
-          onValid(formLogicQs[i]);
+    if (!hasClass(formLogicQs[i], 'form-hidden')) {
+      if (hasClass(formLogicQs[i], 'form-AcceptTnC')) {
+        if (!formLogicQs[i].querySelectorAll('input')[0].checked) {
+          onInvalid(formLogicQs[i]);
+        } else {
+          if (hasClass(formLogicQs[i], 'input-invalid')) {
+            onValid(formLogicQs[i]);
+          }
         }
       }
     }

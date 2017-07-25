@@ -181,15 +181,15 @@ fifi_form.prototype.clickedSubmit = function() {
 
     function createUrl() {
       let url = (_.def.submitToLive) ? 'https://services.ef.com/secureformsapi/campaign/' : 'https://stg-efcom-lb.eflangtech.com/secureformsapi/campaign/';
-      if (window.location.href.indexOf('qa') > -1 || window.location.href.indexOf('sitecore') > -1 || window.location.href.indexOf('localhost') > -1) {
+      /*if (window.location.href.indexOf('qa') > -1 || window.location.href.indexOf('sitecore') > -1 || window.location.href.indexOf('localhost') > -1) {
         url = 'https://stg-efcom-lb.eflangtech.com/secureformsapi/';
-      } else {
+      } else {*/
         url = 'https://services.ef.com/secureformsapi/';
-      }
+      //}
       if (_.curStep === 2) {
         url += 'ConfirmAddressCampaign/';
       } else {
-        url += 'campaign/';
+        url += 'Campaign/';
       }
       url += _.cusId;
       return url;
