@@ -240,7 +240,7 @@ p {
   width: 100%;
   top: 0;
   left: 0;
-  box-shadow: 0 1px 0px #888;
+  box-shadow: 0 1px 0px #cccccc;
   z-index: 1; }
   .menu .menu-inner {
     position: relative;
@@ -254,7 +254,7 @@ p {
     top: -9999px;
     padding: 5px 10px;
     background: rgba(255, 255, 255, 0.93);
-    border: 1px solid #888;
+    border: 1px solid #ccc;
     transition: top 0.4s; }
     .menu .menu-items.show-menu {
       top: 46px; }
@@ -335,14 +335,14 @@ p {
     padding: 0 10px;
     font-weight: 700;
     border: 1px solid;
-    margin: 10px 0 40px; }
+    margin: 10px 0 30px; }
     .cta-block-wrapper .cta-button:first-child {
       padding: 0 5px 0 10px; }
     .cta-block-wrapper .cta-button:last-child {
       padding: 0 10px 0 5px; }
     .cta-block-wrapper .cta-button span {
       padding: 10px;
-      border-radius: 5px; }
+      border-radius: 30px; }
   .cta-block-wrapper .cta-pq {
     padding: 10px 20px; }
     @media screen and (min-width: 4000px) {
@@ -579,10 +579,12 @@ p {
   width: 100%; }
 
 .block-infomeetings .inner-wrapper {
-  padding: 10px; }
+  padding: 10px 0; }
 
 .block-infomeetings .ims-wrapper {
-  border: 1px solid black; }
+  border: 1px solid black;
+  border-left: 0;
+  border-right: 0; }
   @media screen and (min-width: 4000px) {
     .block-infomeetings .ims-wrapper {
       border: 0;
@@ -606,22 +608,20 @@ p {
     border-radius: 3px/5px; } }
 
 .block-infomeetings .im-item:nth-child(odd) {
-  background-color: #a5c7d8; }
-  .block-infomeetings .im-item:nth-child(odd) .im-tab.active ~ .im-content {
-    border-bottom: 1px solid white; }
-    .block-infomeetings .im-item:nth-child(odd) .im-tab.active ~ .im-content:last-child {
-      border-bottom: 0; }
+  background-color: #efefef; }
+  .block-infomeetings .im-item:nth-child(odd) .im-tab.active ~ .im-content:last-child {
+    border-bottom: 0; }
 
 .block-infomeetings .im-item .im-tab.active ~ .im-content {
   height: auto;
-  border-bottom: 1px solid #ccc; }
+  padding: 0px 10px; }
   .block-infomeetings .im-item .im-tab.active ~ .im-content:last-child {
     border-bottom: 0; }
 
 .block-infomeetings .im-tab {
   display: block;
   position: relative;
-  padding: 5px;
+  padding: 18px 15px;
   border-bottom: 1px solid transparent;
   transition: border-bottom 0.4s; }
   .block-infomeetings .im-tab.active {
@@ -655,7 +655,7 @@ p {
   height: 8px;
   top: 50%;
   margin-top: -4px;
-  right: 10px; }
+  right: 20px; }
   .block-infomeetings .im-arrow:after {
     content: '';
     display: block;
@@ -840,7 +840,7 @@ p {
   position: absolute;
   width: 30px;
   height: 30px;
-  top: 20px;
+  top: 10px;
   right: 10px; }
   .popup-close:before, .popup-close:after {
     content: '';
@@ -848,7 +848,7 @@ p {
     position: absolute;
     width: 100%;
     height: 2px;
-    top: 0;
+    top: 50%;
     left: 0;
     background-color: black; }
   .popup-close:before {

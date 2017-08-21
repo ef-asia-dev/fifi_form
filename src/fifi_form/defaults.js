@@ -18,9 +18,21 @@ function removeClass(el, className) {
     el.className = el.className.replace(new RegExp(`(^|\\b)${className.split(' ').join('|')}(\\b|$)`, 'gi'), ' ');
   }
 };
-function getCookie(key) {
-  const result = new RegExp(`(?:^|; )${encodeURIComponent(key)}=([^;]*)`).exec(document.cookie);
-  return result ? (result[1]) : null;
+function getCookie(_ref) {
+  var name = _ref.name;
+
+  if (document.cookie.length > 0) {
+    var cStart = document.cookie.indexOf(name + '=');
+    if (cStart !== -1) {
+      cStart = cStart + name.length + 1;
+      var cEnd = document.cookie.indexOf(';', cStart);
+      if (cEnd === -1) {
+        cEnd = document.cookie.length;
+      }
+      return unescape(document.cookie.substring(cStart, cEnd));
+    }
+  }
+  return '';
 }; // readCookie
 function ajaxPost(link, data, onSuccess, _) {
   var request = new XMLHttpRequest();
@@ -46,6 +58,30 @@ function $extendObj(_def, addons) {
     }
   }
 };
+
+function extend(out) {
+  for (var i = 0; i < (arguments.length <= 1 ? 0 : arguments.length - 1); i += 1) {
+    var obj = arguments.length <= i + 1 ? undefined : arguments[i + 1];
+
+    if (obj) {
+      var keys = Object.keys(obj);
+      for (var j = 0; j < keys.length; j += 1) {
+        if ({}.hasOwnProperty.call(obj, keys[j])) {
+          if (obj[keys[j]] instanceof Array) {
+            if (!Array.isArray(out[keys[j]])) {
+              out[keys[j]] = [];
+            } // if
+            out[keys[j]] = out[keys[j]].concat(obj[keys[j]]);
+          } else if (_typeof(obj[keys[j]]) === 'object') {
+            out[keys[j]] = {};
+            extend(out[keys[j]], obj[keys[j]]);
+          } else {
+            out[keys[j]] = obj[keys[j]];
+          } // else
+        } // if
+      } // for
+    } // if
+  } // for
 
 fifi_form = function(settings) {
   var _ = this;

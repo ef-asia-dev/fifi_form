@@ -24,7 +24,7 @@ fifi_form.prototype.clickedSubmit = function() {
         TritonId: getCookie('triton'),
         ExternalreferringUrl: getCookie('OriginalReferringURl'),
         EntryPage: getCookie('OriginalEntryUrl'),
-        EntrySourceCode: (window.location.href.indexOf('source=') > -1) ? window.location.search.split('source=')[1].split(',')[0] : "00700",
+        SourceCode: (window.location.href.indexOf('source=') > -1) ? window.location.search.split('source=')[1].split(',')[0] : "00700",
         Etag: (window.location.href.indexOf('source=') > -1) ? window.location.search.split('source=')[1].split(',')[1] : "",
         TritonPageViewID: getCookie('pageview'),
         ReferringUrl: document.referrer,
@@ -39,7 +39,7 @@ fifi_form.prototype.clickedSubmit = function() {
       } // if
 
       const trackingObj = computeTrackingData(getCookie('TrackingData'));
-      $extendObj(trackingDetails, trackingObj);
+      extend(trackingDetails, trackingObj);
       trackingDetails.EntrySourceCode = trackingDetails.SourceCode;
       trackingDetails.PartnerCode = typeof trackingDetails.PartnerName !== 'string' || trackingDetails.PartnerName.toLowerCase() === 'unknown' ? '' : trackingDetails.PartnerName;
 

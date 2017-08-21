@@ -8,6 +8,7 @@
   }
   .form-button-row {
     text-align: center;
+    margin: 20px auto;
   }
   > .form-row:last-child {
     text-align: center;
@@ -69,8 +70,10 @@
   .form-submit {
     display: inline-block;
     position: relative;
+    min-width: 80px;
     padding: 5px 10px;
     border: 1px solid black;
+    border-radius: 30px;
     transition: all 0.4s;
 
     &:hover {
@@ -97,7 +100,34 @@
 }
 .ty-wrapper {
   display: none;
+  padding: 0 0 0 0;
   text-align: center;
+
+  .thanks {
+    font-size: 14px;
+    padding: 20px 5px;
+  }
+
+  .cta-blocks {
+    margin: 0 auto 20px;
+  }
+
+  .cta-block {
+    display: block;
+    line-height: 1.5em;
+    background-color: #f0f0f0;
+    padding: 20px 10px;
+    margin: 16px auto;
+    transition: background-color 0.4s;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:hover {
+      background-color: #dddddd;
+    }
+  }
 }
 textarea {
   border: 1px solid black;

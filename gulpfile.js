@@ -45,9 +45,9 @@ gulp.task('styles', function(){
                    .pipe(sass().on('error', sass.logError))
                    .pipe(gulp.dest('dist/styles/'));
 
-  if (config.minify) stream = stream.pipe(rename({suffix: '.min'}))
-                                    .pipe(cleanCSS())
-                                    .pipe(concat('main.css'));
+  //if (config.minify) stream =
+  stream = stream.pipe(cleanCSS())
+                 .pipe(concat('main.css'));
 
   return stream.pipe(gulp.dest('dist/styles/'))
                .pipe(browserSync.reload({stream:true}));

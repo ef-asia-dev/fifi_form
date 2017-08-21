@@ -5,7 +5,8 @@
   .form-wrapper .form-row {
     margin: 5px 0; }
   .form-wrapper .form-button-row {
-    text-align: center; }
+    text-align: center;
+    margin: 20px auto; }
   .form-wrapper > .form-row:last-child {
     text-align: center; }
   .form-wrapper .form-hidden {
@@ -49,8 +50,10 @@
   .form-wrapper .form-submit {
     display: inline-block;
     position: relative;
+    min-width: 80px;
     padding: 5px 10px;
     border: 1px solid black;
+    border-radius: 30px;
     transition: all 0.4s; }
     .form-wrapper .form-submit:hover {
       color: white;
@@ -70,7 +73,24 @@
 
 .ty-wrapper {
   display: none;
+  padding: 0 0 0 0;
   text-align: center; }
+  .ty-wrapper .thanks {
+    font-size: 14px;
+    padding: 20px 5px; }
+  .ty-wrapper .cta-blocks {
+    margin: 0 auto 20px; }
+  .ty-wrapper .cta-block {
+    display: block;
+    line-height: 1.5em;
+    background-color: #f0f0f0;
+    padding: 20px 10px;
+    margin: 16px auto;
+    transition: background-color 0.4s; }
+    .ty-wrapper .cta-block:first-child {
+      margin-top: 0; }
+    .ty-wrapper .cta-block:hover {
+      background-color: #dddddd; }
 
 textarea {
   border: 1px solid black; }
