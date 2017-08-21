@@ -748,10 +748,10 @@ fifi_form.prototype.createCheckrows = function () {
       addressShowHide(true, true);
     }
 
-    if (i == "DataCollection") {
-      var stment = document.createElement('div');
+    /*if (i == "DataCollection") {
+      let stment = document.createElement('div');
       stment.className = "data-collection-statement";
-      var stmentText = "<h4>개인정보 수집 및 이용에 대한 안내</h4>\
+      let stmentText = "<h4>개인정보 수집 및 이용에 대한 안내</h4>\
       개인정보 수집이용 동의는 고객의 개인정보 보호를 위하여 EF Education First Korea이 실시하는 개인정보 수집의 목적과 그 정보의 항목, 보유 및 이용기간에 대한 취급방침을 반드시 읽어보시고, 동의 여부를 선택하여 주시기 바랍니다.<br/>\
       ------------------------------<br/>\
       1. 수집하는 개인정보 항목<br/>\
@@ -773,10 +773,9 @@ fifi_form.prototype.createCheckrows = function () {
       ------------------------------<br/>\
       4. 개인정보 제공 동의 거부할 권리가 있다는 사실 및 동의 거부에 따른 불이익의 내용<br/>\
       고객님의 개인정보 제공 동의를 거부할 수 있으며, 거부 시 서비스 제공이 제한될 수 있습니다";
-
-      $(_.def.wrapper + (' form .form-' + i)).appendChild(stment);
+        $(_.def.wrapper+` form .form-${i}`).appendChild(stment);
       $(_.def.wrapper + (' form .form-' + i) + ' .data-collection-statement').innerHTML = stmentText;
-    }
+    }*/
 
     var lbl = document.createElement('label');
     lbl.setAttribute('for', i);
