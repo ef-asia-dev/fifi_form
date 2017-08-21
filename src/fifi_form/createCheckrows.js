@@ -51,7 +51,7 @@ fifi_form.prototype.createCheckrows = function() {
       addressShowHide(true, true);
     }
 
-    if (i == "DataCollection") {
+    /*if (i == "DataCollection") {
       let stment = document.createElement('div');
       stment.className = "data-collection-statement";
       let stmentText = "<h4>개인정보 수집 및 이용에 대한 안내</h4>\
@@ -79,7 +79,7 @@ fifi_form.prototype.createCheckrows = function() {
 
       $(_.def.wrapper+` form .form-${i}`).appendChild(stment);
       $(_.def.wrapper + (' form .form-' + i) + ' .data-collection-statement').innerHTML = stmentText;
-    }
+    }*/
 
     let lbl = document.createElement('label');
     lbl.setAttribute('for', i);

@@ -1,4 +1,4 @@
-fifi_form.prototype.clickedSubmit = function() {
+fifi_form.prototype.clickedSubmit = function () {
   var _ = this;
 
   if (!_.clickedBtn) {
@@ -41,6 +41,7 @@ fifi_form.prototype.clickedSubmit = function() {
       const trackingObj = computeTrackingData(getCookie('TrackingData'));
       extend(trackingDetails, trackingObj);
       trackingDetails.EntrySourceCode = trackingDetails.SourceCode;
+      trackingDetails.Etag = trackingDetails.Etag;
       trackingDetails.PartnerCode = typeof trackingDetails.PartnerName !== 'string' || trackingDetails.PartnerName.toLowerCase() === 'unknown' ? '' : trackingDetails.PartnerName;
 
       return trackingDetails;
@@ -181,11 +182,11 @@ fifi_form.prototype.clickedSubmit = function() {
 
     function createUrl() {
       let url = (_.def.submitToLive) ? 'https://services.ef.com/secureformsapi/campaign/' : 'https://stg-efcom-lb.eflangtech.com/secureformsapi/campaign/';
-      /*if (window.location.href.indexOf('qa') > -1 || window.location.href.indexOf('sitecore') > -1 || window.location.href.indexOf('localhost') > -1) {
+      if (window.location.href.indexOf('qa') > -1 || window.location.href.indexOf('sitecore') > -1 || window.location.href.indexOf('localhost') > -1 || window.location.href.indexOf('efcampaigns.com') > -1) {
         url = 'https://stg-efcom-lb.eflangtech.com/secureformsapi/';
-      } else {*/
+      } else {
         url = 'https://services.ef.com/secureformsapi/';
-      //}
+      }
       if (_.curStep === 2) {
         url += 'ConfirmAddressCampaign/';
       } else {

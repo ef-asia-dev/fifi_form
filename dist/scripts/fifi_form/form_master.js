@@ -6,7 +6,7 @@ var fifi_form = window.fifi_form || {};
 
 function $(elem) {
   return document.querySelector(elem);
-};
+}
 function hasClass(el, className) {
   return el.classList ? el.classList.contains(className) : new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
 };
@@ -16,18 +16,20 @@ function addClass(el, className) {
   } else {
     el.className += ' ' + className;
   }
-};
+}
 function removeClass(el, className) {
   if (el.classList) {
     el.classList.remove(className);
   } else {
     el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
   }
-};
-function getCookie(key) {
-  var result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie);
-  return result ? result[1] : null;
-}; // readCookie
+}
+function getCookie(name) {
+  return document.cookie.split('; ').reduce(function (r, v) {
+    var parts = v.split('=');
+    return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+  }, '');
+} // readCookie
 function ajaxPost(link, data, onSuccess, _) {
   var request = new XMLHttpRequest();
   request.open('POST', link, true);
@@ -42,7 +44,7 @@ function ajaxPost(link, data, onSuccess, _) {
       onSuccess();
     }
   };
-};
+}
 function $extendObj(_def, addons) {
   if (typeof addons !== "undefined") {
     for (var prop in _def) {
@@ -51,7 +53,32 @@ function $extendObj(_def, addons) {
       }
     }
   }
-};
+}
+
+function extend(out) {
+  for (var i = 0; i < (arguments.length <= 1 ? 0 : arguments.length - 1); i += 1) {
+    var obj = arguments.length <= i + 1 ? undefined : arguments[i + 1];
+
+    if (obj) {
+      var keys = Object.keys(obj);
+      for (var j = 0; j < keys.length; j += 1) {
+        if ({}.hasOwnProperty.call(obj, keys[j])) {
+          if (obj[keys[j]] instanceof Array) {
+            if (!Array.isArray(out[keys[j]])) {
+              out[keys[j]] = [];
+            } // if
+            out[keys[j]] = out[keys[j]].concat(obj[keys[j]]);
+          } else if (_typeof(obj[keys[j]]) === 'object') {
+            out[keys[j]] = {};
+            extend(out[keys[j]], obj[keys[j]]);
+          } else {
+            out[keys[j]] = obj[keys[j]];
+          } // else
+        } // if
+      } // for
+    } // if
+  } // for
+}
 
 fifi_form = function fifi_form(settings) {
   var _ = this;
@@ -425,7 +452,7 @@ fifi_form.prototype.clickedSubmit = function () {
           TritonId: getCookie('triton'),
           ExternalreferringUrl: getCookie('OriginalReferringURl'),
           EntryPage: getCookie('OriginalEntryUrl'),
-          EntrySourceCode: window.location.href.indexOf('source=') > -1 ? window.location.search.split('source=')[1].split(',')[0] : "00700",
+          SourceCode: window.location.href.indexOf('source=') > -1 ? window.location.search.split('source=')[1].split(',')[0] : "00700",
           Etag: window.location.href.indexOf('source=') > -1 ? window.location.search.split('source=')[1].split(',')[1] : "",
           TritonPageViewID: getCookie('pageview'),
           ReferringUrl: document.referrer,
@@ -440,8 +467,9 @@ fifi_form.prototype.clickedSubmit = function () {
         } // if
 
         var trackingObj = computeTrackingData(getCookie('TrackingData'));
-        $extendObj(trackingDetails, trackingObj);
+        extend(trackingDetails, trackingObj);
         trackingDetails.EntrySourceCode = trackingDetails.SourceCode;
+        trackingDetails.Etag = trackingDetails.Etag;
         trackingDetails.PartnerCode = typeof trackingDetails.PartnerName !== 'string' || trackingDetails.PartnerName.toLowerCase() === 'unknown' ? '' : trackingDetails.PartnerName;
 
         return trackingDetails;
@@ -585,11 +613,11 @@ fifi_form.prototype.clickedSubmit = function () {
 
       var createUrl = function createUrl() {
         var url = _.def.submitToLive ? 'https://services.ef.com/secureformsapi/campaign/' : 'https://stg-efcom-lb.eflangtech.com/secureformsapi/campaign/';
-        /*if (window.location.href.indexOf('qa') > -1 || window.location.href.indexOf('sitecore') > -1 || window.location.href.indexOf('localhost') > -1) {
+        if (window.location.href.indexOf('qa') > -1 || window.location.href.indexOf('sitecore') > -1 || window.location.href.indexOf('localhost') > -1 || window.location.href.indexOf('efcampaigns.com') > -1) {
           url = 'https://stg-efcom-lb.eflangtech.com/secureformsapi/';
-        } else {*/
-        url = 'https://services.ef.com/secureformsapi/';
-        //}
+        } else {
+          url = 'https://services.ef.com/secureformsapi/';
+        }
         if (_.curStep === 2) {
           url += 'ConfirmAddressCampaign/';
         } else {

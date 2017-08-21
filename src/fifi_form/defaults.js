@@ -1,6 +1,6 @@
 function $(elem) {
   return document.querySelector(elem);
-};
+}
 function hasClass(el, className) {
   return el.classList ? el.classList.contains(className) : new RegExp(`(^| )${className}( |$)`, 'gi').test(el.className);
 };
@@ -10,30 +10,20 @@ function addClass(el, className) {
   } else {
     el.className += ` ${className}`;
   }
-};
+}
 function removeClass(el, className) {
   if (el.classList) {
     el.classList.remove(className);
   } else {
     el.className = el.className.replace(new RegExp(`(^|\\b)${className.split(' ').join('|')}(\\b|$)`, 'gi'), ' ');
   }
-};
-function getCookie(_ref) {
-  var name = _ref.name;
-
-  if (document.cookie.length > 0) {
-    var cStart = document.cookie.indexOf(name + '=');
-    if (cStart !== -1) {
-      cStart = cStart + name.length + 1;
-      var cEnd = document.cookie.indexOf(';', cStart);
-      if (cEnd === -1) {
-        cEnd = document.cookie.length;
-      }
-      return unescape(document.cookie.substring(cStart, cEnd));
-    }
-  }
-  return '';
-}; // readCookie
+}
+function getCookie(name) {
+  return document.cookie.split('; ').reduce(function (r, v) {
+    var parts = v.split('=');
+    return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+  }, '');
+}// readCookie
 function ajaxPost(link, data, onSuccess, _) {
   var request = new XMLHttpRequest();
   request.open('POST', link, true);
@@ -48,7 +38,7 @@ function ajaxPost(link, data, onSuccess, _) {
       onSuccess();
     }
   }
-};
+}
 function $extendObj(_def, addons) {
   if (typeof addons !== "undefined") {
     for (var prop in _def) {
@@ -57,7 +47,7 @@ function $extendObj(_def, addons) {
       }
     }
   }
-};
+}
 
 function extend(out) {
   for (var i = 0; i < (arguments.length <= 1 ? 0 : arguments.length - 1); i += 1) {
@@ -82,6 +72,7 @@ function extend(out) {
       } // for
     } // if
   } // for
+}
 
 fifi_form = function(settings) {
   var _ = this;
